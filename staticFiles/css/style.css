@@ -94,6 +94,7 @@ a:hover, a:focus {
     color: #6195FF;
 }
 
+
 .main-color {
     color: #6195FF;
 }
@@ -958,6 +959,10 @@ header {
     padding-bottom: 40px;
 }
 
+.price-content {
+    padding: 0 2% 0 2% !important;
+}}
+
 /*------------------------------------*\
 	Testimonial
 \*------------------------------------*/
@@ -1120,7 +1125,9 @@ header {
     font-size: 14px;
     color: #10161A;
     margin-right: 10px;
+    
 }
+
 
 .blog .blog-meta li i {
     color: #6195FF;
