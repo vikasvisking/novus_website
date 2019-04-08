@@ -1,0 +1,155 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block head %}
+{% block title %}Categories{% endblock %}
+ <!-- Sweetalert Css -->
+    <link href="/static/dashboard/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+{% endblock %}
+
+    {% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Basic Examples -->
+            <div class="row clearfix js-sweetalert">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Categories
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                            	{% if categories %}
+                                <table class="table table-bordered table-striped table-hover js-basic-example categoryTable">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Total No of Posts</th>
+                                            <th>Edit | Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Total No of Posts</th>
+                                            <th>Edit | Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                    	{% for category in categories %}
+                                        <tr>
+                                            <td>{{category.title}}</td>
+                                            <td>{{category.blog_count}}</td>
+                                            <td><button type="button" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float" onclick="edit({{category.id}})"> <i class="material-icons">edit</i>
+                                </button> &nbsp;<button type="button" class="btn bg-red btn-circle waves-effect waves-circle waves-float"  onclick="confirmDelete({{category.id}})"> <i class="material-icons">delete</i>
+                        </button>
+                            </td>          
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <h3>Currently there are no categories.</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+        </div>
+    </section>
+    {% endblock %}
+
+ {% block footerScripts %}
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="/static/dashboard/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/static/dashboard/js/admin.js"></script>
+    <script src="/static/dashboard/js/pages/ui/dialogs.js"></script>
+
+<script type="text/javascript">
+    
+    $(function () {
+    $('.categoryTable').DataTable({
+        responsive: true
+    });
+
+</script>
+
+
+    <script type="text/javascript">
+        
+        function confirmDelete(pk) {
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this category!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function (isConfirm) {
+        if (!isConfirm) return;
+        $.ajax({
+            url: "/dashboard/deleteCategory/" + pk + "/",
+            type: "POST",
+            data: {
+                id: pk,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "html",
+            success: function () {
+                swal("Done!", "It was succesfully deleted!", "success");
+                setTimeout(function(){window.location.reload();},800);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal("Error deleting!", "Please try again", "error");
+            }
+        });
+    });
+}
+
+
+    function edit(pk){
+
+    swal({
+        title: "Edit Category",
+        text: "Edit title of category",
+        type: "input",
+        animation: "slide-from-top",
+        inputPlaceholder: "Enter the title here",
+        showCancelButton: true,
+    }, function (isConfirm) {
+        if (!isConfirm) return;
+        console.log('hello');
+        $.ajax({
+            url: "/dashboard/editCategory/" + pk + "/",
+            type: "POST",
+            data: {
+                id: pk,
+                title: $('input[placeholder="Enter the title here"]').val(),
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "html",
+            success: function () {
+                swal("Done!", "It was succesfully edited!", "success");
+                setTimeout(function(){window.location.reload();},800);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal("Error deleting!", "Please try again", "error");
+            }
+        });
+    });
+
+}
+    </script>
+
+
+{% endblock %}

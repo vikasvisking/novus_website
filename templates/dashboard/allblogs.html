@@ -1,0 +1,135 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block head %}
+{% block title %}All Blog Posts{% endblock %}
+
+
+ <!-- Sweetalert Css -->
+    <link href="/static/dashboard/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+{% endblock %}
+
+    {% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Basic Examples -->
+            <div class="row clearfix js-sweetalert">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Blog Posts
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                            	{% if blogs %}
+                                <table class="table table-bordered table-striped table-hover js-basic-example blogTable">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Date</th>
+                                            <th>Author</th>
+                                            <th>Content</th>
+                                            <th>Edit | Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Date</th>
+                                            <th>Author</th>
+                                            <th>Content</th>
+                                            <th>Edit | Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                    	{% for blog in blogs %}
+                                        <tr>
+                                            <td>{{blog.title}}</td>
+                                            <td>{{blog.category.title}}</td>
+                                            <td>{{blog.date}}</td>
+                                            <td>{{blog.author}}</td>
+                                            <td class="noimg">{% autoescape off %}
+                                                {{blog.content | truncatewords:10}}
+                                                {% endautoescape %}
+
+                                            </td>
+                                            <td><a href="/dashboard/editBlogs/{{blog.id}}/"><button type="button" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float"> <i class="material-icons">edit</i>
+                                </button></a> &nbsp;<button type="button" class="btn bg-red btn-circle waves-effect waves-circle waves-float"  onclick="confirmDelete({{blog.id}})"> <i class="material-icons">delete</i>
+                        </button>
+                            </td>          
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <h3>Currently there are no blog posts.</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+        </div>
+    </section>
+    {% endblock %}
+
+ {% block footerScripts %}
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="/static/dashboard/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/static/dashboard/js/admin.js"></script>
+    <script src="/static/dashboard/js/pages/ui/dialogs.js"></script>
+
+<script type="text/javascript">
+    
+    $(function () {
+    $('.blogTable').DataTable({
+        responsive: true
+    });
+
+</script>
+
+    <script type="text/javascript">
+        
+        function confirmDelete(pk) {
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this blog post!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function (isConfirm) {
+        if (!isConfirm) return;
+        $.ajax({
+            url: "/dashboard/deleteBlogs/" + pk + "/",
+            type: "POST",
+            data: {
+                id: pk,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "html",
+            success: function () {
+                swal("Done!", "It was succesfully deleted!", "success");
+                setTimeout(function(){window.location.reload();},800);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal("Error deleting!", "Please try again", "error");
+            }
+        });
+    });
+}
+    </script>
+
+
+{% endblock %}

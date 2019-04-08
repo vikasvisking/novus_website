@@ -5,13 +5,17 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <!-- Toastr -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
 <title>Novus | Dashboard | login</title>
 <style type="text/css">
 	
 /* BASIC */
 
 html {
-  background-color: #56baed;
+  background-color: #ff914d;
 }
 
 body {
@@ -91,7 +95,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #56baed;
+  background-color: #ff914d;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -100,8 +104,8 @@ input[type=button], input[type=submit], input[type=reset]  {
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-box-shadow: 0 10px 30px 0 rgb(193, 190, 190);
+  box-shadow: 0 10px 30px 0 rgb(193, 190, 190);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px 20px 40px 20px;
@@ -113,7 +117,8 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #fff;
+  color: #ff914d;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -147,7 +152,7 @@ input[type=text], input[type=password]{
 
 input[type=text]:focus, input[type=password]:focus{
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom:2px solid #ff914d
 }
 
 input[type=text]:placeholder, input[type=password]:placeholder{
@@ -248,7 +253,7 @@ input[type=text]:placeholder, input[type=password]:placeholder{
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: #ff914d;
   content: "";
   transition: width 0.2s;
 }
@@ -286,15 +291,15 @@ h1{
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="/static/img/logo.png" id="icon" alt="User Icon" />
-      <h1>Dashboard Login</h1>
+      <img src="/static/img/logo/akm.png" id="icon" alt="User Icon" />
+      <!-- <h1>Dashboard Login</h1> -->
     </div>
 
     <!-- Login Form -->
-    <form method="post" action= "/dashboard/login/">
+    <form method="post" action= "/dashboard/login/" autocomplete="off">
       {%csrf_token %}
       <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 
@@ -305,5 +310,16 @@ h1{
 
   </div>
 </div>
+
+ <!-- Toastr -->
+<script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+
+     {% if messages %}
+          {% for message in messages %}
+          toastr.{{message.tags}}("{{ message }}")
+          {% endfor %}
+     {% endif %}
+ </script>
 </body>
 </html>
