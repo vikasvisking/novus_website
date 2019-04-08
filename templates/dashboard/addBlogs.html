@@ -1,0 +1,180 @@
+﻿{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block head %}
+{% block title %}Add Blogs{% endblock %}
+
+    <!-- Bootstrap Select Css -->
+    <link href="/static/dashboard/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+{% endblock %}
+
+
+    {% block content %}
+
+
+<section class="content">
+        <div class="container-fluid">
+            <!-- Inline Layout -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               Add Blog
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <form action = '{% url "addBlogs" %}' method="post" id="addBlogForm" enctype='multipart/form-data'>
+                                {% csrf_token %}
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="title">Title</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="title" name="title" class="form-control" placeholder="Enter the title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="Author">Author</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" id="author" placeholder="Enter the author name" name="author">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="category">Category</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                        <div class="col-md-6">
+                                    <select class="form-control show-tick" name="category" data-live-search="true" id="category">
+                                        <option disabled selected value= "none">Select category</option>
+                                        {% for category in categories %}
+                                        <option value={{category.id}}>{{category.title}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                 </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="image">Blog Image</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                         <input type="file" name="image"  id="image">
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                        <label for="content">Content</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea id="content" class="content" name="content">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5" id="content">
+                                        <button type="submit" class="btn btn-primary waves-effect"> Submit</button>
+                                        <button type="button" class="btn bg-deep-orange waves-effect" onclick="submitForm()">Submit and Add Another</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Inline Layout -->         
+        </div>
+    </section>
+
+    {% endblock %}
+
+     {% block footerScripts %}
+    
+    <script type="text/javascript">
+    tinymce.init({
+    selector: "textarea",
+    editor_selector : "content",
+    setup: function (editor) {
+        editor.on('change', function () {
+            editor.save();
+        });
+    },
+    width: 600,
+    height: 500,
+    theme: 'modern',
+    plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste ",
+        'advlist autolink lists link image charmap preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code',
+        'insertdatetime media nonbreaking table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+    ],
+    fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+    toolbar1: " insertfile undo redo | styleselect | bold italic | hr alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | sizeselect | fontselect |  fontsizeselect",
+     toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+    image_advtab: true,
+  templates: [
+    { title: 'Test template 1', content: 'Test 1' },
+    { title: 'Test template 2', content: 'Test 2' }
+  ],
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tinymce.com/css/codepen.min.css'
+  ]
+
+});
+ </script>
+
+ <script type="text/javascript">
+     
+ </script>
+
+ <script type="text/javascript">
+    
+
+
+
+     function submitForm(event) {
+        var data = new FormData($('#addBlogForm').get(0));
+        $.ajax({
+            type: 'post',
+            url: $(this).attr('action'),
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data){
+                document.getElementById("addBlogForm").reset();
+                toastr.success("Blog post has been successsfully added");
+            },
+            error: function(data) {
+                toastr.error(data);
+            }
+        });
+        return false;
+    }
+</script>
+
+{% endblock %}

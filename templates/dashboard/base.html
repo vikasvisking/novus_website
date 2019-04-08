@@ -28,11 +28,17 @@
     <!-- Custom Css -->
     <link href="/static/dashboard/css/style.css" rel="stylesheet">
 
+    <!-- JQuery DataTable Css -->
+    <link href="/static/dashboard/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
     <!--=== Favicon ===-->
     <link rel="shortcut icon" href="/static/img/favicon.png" type="image/x-icon" />
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="/static/dashboard/css/themes/all-themes.css" rel="stylesheet" />
+
+    <!-- Toastr -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
     {% block head %}
     {% endblock %}
@@ -69,8 +75,11 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html" style="padding-top: 1%;"><img class="logo" src="/static/img/logo.png" alt="logo">&nbsp; Novus Dashboard</a>
+                <a class="navbar-brand" href="index.html" style="padding-top: 1%;"><img class="logo" src="/static/img/logo/akmwhite.png" alt="logo">&nbsp; Novus</a>
             </div>  
+            <div>
+                
+            </div>
         </div>
     </nav>
     <!-- #Top Bar -->
@@ -101,21 +110,54 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    
+
+
+                    <!-- categories -->
+
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">book</i>
-                            <span>Blogs</span>
+                            <i class="material-icons">assignment</i>
+                            <span>Blog Categories</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="pages/ui/animations.html">View Blogs</a>
+                                <a href="/dashboard/allCategory">View All Categories</a>
                             </li>
                             <li>
-                                <a href="/dashboard">Add A New Blog</a>
-                            </li>
-                            
-                        </ul>                     
+                                <a href="/dashboard/addCategory">Add A New Category</a>
+                            </li> 
+                        </ul> 
                     </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">book</i>
+                            <span>Blog Posts</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="/dashboard/allBlogs/">View All Blogs</a>
+                            </li>
+                            <li>
+                                <a href="/dashboard/addBlogs/">Add A New Blog</a>
+                            </li> 
+                        </ul> 
+                    </li>
+
+
+                        <li>
+                        <a href="/dashboard/allContacts/">
+                            <i class="material-icons">account_box</i>
+                            <span>Contacted Us</span>
+                        </a>
+                       </li>
+
+                       <li>
+                        <a href="/dashboard/logout">
+                            <i class="material-icons">exit_to_app</i>
+                            <span>Log Out</span>
+                        </a>
+                       </li>
                     
                 </ul>
             </div>
@@ -133,7 +175,6 @@
 
     {% block content %}
     {% endblock %}
-
 
 
     <!-- Jquery Core Js -->
@@ -171,12 +212,37 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="/static/dashboard/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
+     <!-- Jquery DataTable Plugin Js -->
+    <script src="/static/dashboard/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="/static/dashboard/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="/static/dashboard/js/pages/tables/jquery-datatable.js"></script>
+
+
+
     <!-- Custom Js -->
     <script src="/static/dashboard/js/admin.js"></script>
     <script src="/static/dashboard/js/pages/index.js"></script>
 
     <!-- Demo Js -->
     <script src="/static/dashboard/js/demo.js"></script>
+
+    <!-- Toastr -->
+        <script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="/static/dashboard/js/pages/forms/advanced-form-elements.js"></script>
+
+    <!-- TinyMCE -->
+    <script src="/static/dashboard/plugins/tinymce/tinymce.js"></script>
+    <script src="/static/dashboard/js/pages/forms/editors.js"></script>
+
+    <script type="text/javascript">
+
+     {% if messages %}
+          {% for message in messages %}
+          toastr.{{message.tags}}("{{ message }}")
+          {% endfor %}
+     {% endif %}
+ </script>
 
 {% block footerScripts %}
 {% endblock %}

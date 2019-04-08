@@ -8224,3 +8224,19 @@ html.ie11 .dropdown-menu ul.menu li a {
 
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
+
+.btn-group.bootstrap-select.form-control.input-sm {
+    border: none;
+}
+
+.btn-group.bootstrap-select.form-control.input-sm button{
+  display: none;
+}
+
+.bootstrap-select{
+  border-bottom: none !important;
+}
+
+.noimg img {
+    display: none;
+}

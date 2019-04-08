@@ -1,0 +1,92 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block head %}
+{% block title %}Contacted Us{% endblock %}
+
+
+ <!-- Sweetalert Css -->
+    <link href="/static/dashboard/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+{% endblock %}
+
+    {% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Basic Examples -->
+            <div class="row clearfix js-sweetalert">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Contacted Us
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                {% if contacts %}
+                                <table class="table table-bordered table-striped table-hover js-basic-example blogTable">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Surname</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Messsage</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                           <th>Name</th>
+                                            <th>Surname</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Messsage</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        {% for contact in contacts %}
+                                        <tr>
+                                            <td>{{contact.name}}</td>
+                                            <td>{{contact.surname}}</td>
+                                            <td>{{contact.email}}</td>
+                                            <td>{{contact.phone}}</td>
+                                            <td >{{contact.message}}
+                                            </td>          
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <h3>Currently , NO one has contacted us.</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+        </div>
+    </section>
+    {% endblock %}
+
+ {% block footerScripts %}
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="/static/dashboard/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/static/dashboard/js/admin.js"></script>
+    <script src="/static/dashboard/js/pages/ui/dialogs.js"></script>
+
+<script type="text/javascript">
+    
+    $(function () {
+    $('.blogTable').DataTable({
+        responsive: true
+    });
+
+</script>
+
+{% endblock %}
