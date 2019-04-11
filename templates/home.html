@@ -439,13 +439,20 @@
             <p>Get the recent happening across the world of technology, designing and digital marketing.</p>
           </div>
         </div>
+        
         <div class="col-lg-5 col-md-12 offset-lg-2 text-right">
+          {% if blogs %}
           <div class="blog-btn">
             <a href="#" class="primary-btn">View All</a>
           </div>
+          {% endif %}
         </div>
+        
       </div>
       <div class="row blog-inner justify-content-center">
+
+        {% if blogs %}
+        {% for blog in blogs %}
         <!-- single-blog -->
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="single-blog">
@@ -454,53 +461,27 @@
             </div>
             <div class="blog-details">
               <div class="blog-meta">
-                <span>25 june, 2018 | By Mark Wiens</span>
+                <span>{{ blog.date }} | By {{ blog.author }}</span>
               </div>
-              <h5><a href="#">Addiction When Gambling <br>
-                  Becomes A Problem</a></h5>
-              <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in
-                front of their desktops.</p>
+              <h5><a href="#">{{ blog.title | title }}</a></h5>
+              <p>{{blog.content | truncatechars:100 }}</p>
             </div>
           </div>
         </div>
-        <!-- single-blog -->
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="single-blog">
-            <div class="blog-thumb">
-              <img class="img-fluid" src="static/website/img/blog/h-blog2.jpg" alt="">
-            </div>
-            <div class="blog-details">
-              <div class="blog-meta">
-                <span>25 june, 2018 | By Mark Wiens</span>
-              </div>
-              <h5><a href="#">Addiction When Gambling <br>
-                  Becomes A Problem</a></h5>
-              <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in
-                front of their desktops.</p>
-            </div>
-          </div>
-        </div>
-        <!-- single-blog -->
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="single-blog">
-            <div class="blog-thumb">
-              <img class="img-fluid" src="static/website/img/blog/h-blog3.jpg" alt="">
-            </div>
-            <div class="blog-details">
-              <div class="blog-meta">
-                <span>25 june, 2018 | By Mark Wiens</span>
-              </div>
-              <h5><a href="#">Addiction When Gambling <br>
-                  Becomes A Problem</a></h5>
-              <p>Computers have become ubiquitous in almost every facet of our lives. At work, desk jockeys spend hours in
-                front of their desktops.</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+
+        {% else %}
+
+        <h1> Currently there is no blog posts. </h1>
+
+        {% endif %}
+        
       </div>
     </div>
   </section>
   <!--================ End Blog Area =================-->
+
+  {% include 'contact.html' %}
 {% endblock %}
 
 {% block footerScripts %}
