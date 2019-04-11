@@ -114,14 +114,14 @@
 
                     <!-- categories -->
 
-                    <li>
+                    <li {% if categories %} class="{{ categoryactive }}" {% endif %}>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">assignment</i>
                             <span>Blog Categories</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="/dashboard/allCategory">View All Categories</a>
+                            <li class="{{categoryactive}}">
+                                <a href="/dashboard/allCategory" class="{{categorytoggled}}">View All Categories</a>
                             </li>
                             <li>
                                 <a href="/dashboard/addCategory">Add A New Category</a>

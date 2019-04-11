@@ -50,6 +50,8 @@ def logout(request):
 @login_required
 def allCategory(request):
 	dictV = {}
+	dictV['categoryactive'] = 'active'
+	dictV['categorytoggled'] = 'toggled'
 	dictV['categories'] = Category.objects.all().annotate(blog_count=Count('blog'))
 
 	return render(request, 'dashboard/allCategory.html', dictV)

@@ -15,9 +15,6 @@
   <meta name="keywords" content="">
   <!-- meta character set -->
   <meta charset="UTF-8">
-  <!-- Site Title -->
-  <title>Novus | {% block title %}{% endblock %}</title>
-
   
   <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:400,400i,500" rel="stylesheet">
@@ -26,16 +23,18 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   <!--CSS  ============================================= -->
-  <link rel="stylesheet" href="static/website/css/linearicons.css">
-  <link rel="stylesheet" href="static/website/css/font-awesome.min.css">
-  <link rel="stylesheet" href="static/website/css/bootstrap.css">
-  <link rel="stylesheet" href="static/website/css/magnific-popup.css">
-  <link rel="stylesheet" href="static/website/css/owl.carousel.css">
-  <link rel="stylesheet" href="static/website/css/hexagons.min.css">
-  <link rel="stylesheet" href="static/website/css/nice-select.css">
-  <link rel="stylesheet" href="static/website/css/main.css">
-  <link rel="stylesheet" href="static/website/css/custom.css">
+  <link rel="stylesheet" href="/static/website/css/linearicons.css">
+  <link rel="stylesheet" href="/static/website/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/website/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/website/css/magnific-popup.css">
+  <link rel="stylesheet" href="/static/website/css/owl.carousel.css">
+  <link rel="stylesheet" href="/static/website/css/hexagons.min.css">
+  <link rel="stylesheet" href="/static/website/css/nice-select.css">
+  <link rel="stylesheet" href="/static/website/css/main.css">
+  <link rel="stylesheet" href="/static/website/css/custom.css">
 
+<!-- Site Title -->
+  <title>Novus | {% block title %}{% endblock %}</title>
 
   {% block head %}
   {% endblock %}
@@ -55,13 +54,13 @@
     </div>
     <ul class="list menu-left">
       <li>
-        <a href="index.html"><i class="fas fa-home"></i> &nbsp; Home</a>
+        <a href="/"><i class="fas fa-home"></i> &nbsp; Home</a>
       </li>
       <li>
-        <a href="about-us.html"><i class="fas fa-info-circle"></i> &nbsp; About Us</a>
+        <a href="//"><i class="fas fa-info-circle"></i> &nbsp; About Us</a>
       </li>
       <li>
-        <a href="service.html"><i class="fas fa-layer-group"></i> &nbsp; Services</a>
+        <a href="/service"><i class="fas fa-layer-group"></i> &nbsp; Services</a>
       </li>
       <li>
         <div class="dropdown">
@@ -75,31 +74,13 @@
         </div>
       </li>
       <li>
-        <a href="team.html"><i class="fas fa-users"></i> &nbsp; Team</a>
-      </li>
-      <!-- <li>
-        <div class="dropdown">
-          <button type="button" class="dropdown-toggle" data-toggle="dropdown">
-            Pages
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="elements.html">Elements</a>
-          </div>
-        </div>
-      </li> -->
-      <li>
-        <div class="dropdown">
-          <button type="button" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fas fa-blog"></i> &nbsp; Blogs
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="blog.html">Blog</a>
-            <a class="dropdown-item" href="single-blog.html">Blog Details</a>
-          </div>
-        </div>
+        <a href="/#team"><i class="fas fa-users"></i> &nbsp; Team</a>
       </li>
       <li>
-        <a href="contact.html"><i class="far fa-address-book"></i> &nbsp; Contact Us</a>
+        <a href="/blogs"><i class="fas fa-blog"></i> &nbsp; Blogs</a>
+      </li>
+      <li>
+        <a href="/contactUs"><i class="far fa-address-book"></i> &nbsp; Contact Us</a>
       </li>
     </ul>
   </div>
@@ -180,14 +161,14 @@
           <div class="single-footer-widget mail-chimp">
             <h6 class="mb-20">Instafeed</h6>
             <ul class="instafeed d-flex flex-wrap">
-              <li><img src="static/website/img/instagram/i1.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i2.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i3.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i4.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i5.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i6.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i7.jpg" alt=""></li>
-              <li><img src="static/website/img/instagram/i8.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i1.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i2.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i3.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i4.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i5.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i6.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i7.jpg" alt=""></li>
+              <li><img src="/static/website/img/instagram/i8.jpg" alt=""></li>
             </ul>
           </div>
         </div>
@@ -216,20 +197,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <!--================ End footer Area  =================-->
 
 
-  <script src="static/website/js/vendor/jquery-2.2.4.min.js"></script>
+  <script src="/static/website/js/vendor/jquery-2.2.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
    crossorigin="anonymous"></script>
-  <script src="static/website/js/vendor/bootstrap.min.js"></script>
-  <script src="static/website/js/jquery.ajaxchimp.min.js"></script>
-  <script src="static/website/js/jquery.magnific-popup.min.js"></script>
-  <script src="static/website/js/parallax.min.js"></script>
-  <script src="static/website/js/owl.carousel.min.js"></script>
-  <script src="static/website/js/jquery.nice-select.min.js"></script>
-  <script src="static/website/js/jquery.sticky.js"></script>
-  <script src="static/website/js/hexagons.min.js"></script>
-  <script src="static/website/js/jquery.counterup.min.js"></script>
-  <script src="static/website/js/waypoints.min.js"></script>
-  <script src="static/website/js/main.js"></script>
+  <script src="/static/website/js/vendor/bootstrap.min.js"></script>
+  <script src="/static/website/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/static/website/js/jquery.magnific-popup.min.js"></script>
+  <script src="/static/website/js/parallax.min.js"></script>
+  <script src="/static/website/js/owl.carousel.min.js"></script>
+  <script src="/static/website/js/jquery.nice-select.min.js"></script>
+  <script src="/static/website/js/jquery.sticky.js"></script>
+  <script src="/static/website/js/hexagons.min.js"></script>
+  <script src="/static/website/js/jquery.counterup.min.js"></script>
+  <script src="/static/website/js/waypoints.min.js"></script>
+  <script src="/static/website/js/main.js"></script>
 {% block footerScripts %}
 {% endblock %}
 </body>
